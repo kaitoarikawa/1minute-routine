@@ -8,4 +8,15 @@ services:
     command: sh -c 'cd frontend && yarn start'
     ports:
       - '3000:3000'
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
 
